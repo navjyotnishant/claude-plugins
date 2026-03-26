@@ -1,0 +1,102 @@
+# RFP Pursuit Toolkit - Company Configuration
+# -----------------------------------------------
+# Fill in all fields below with your company details.
+# This file is read by both rfp-clarification-q-optimizer and rfp-proposal-scorer.
+# Save this file as config.yaml in the same folder as the skill you are running.
+#
+# Author: Your Name
+# Last Updated: YYYY-MM-DD
+# Version: 1.0
+
+# -----------------------------------------------
+# COMPANY
+# -----------------------------------------------
+company:
+  name:                         # Full legal name e.g. Acme Corporation
+  short_name:                   # Short name used in reports e.g. Acme
+  tagline:                      # Optional company tagline shown in Excel header
+
+# -----------------------------------------------
+# DELIVERY MODEL
+# -----------------------------------------------
+# Describe how your company delivers services.
+# Add or remove layers as needed.
+# work_type must be one of: Run / Support, Project, Transformation
+
+delivery:
+  model_name:                   # e.g. Fully Managed Delivery Model
+  model_description: >
+    # Describe your delivery model in 2-3 sentences.
+    # What makes it distinctive? What problem does it solve for clients?
+
+  layers:
+    - name:                     # e.g. Service Delivery Layer
+      office:                   # e.g. Service Management Office (SMO)
+      focus:                    # e.g. SLA-Driven Operations
+      work_type:                # Run / Support
+      description: >
+        # Describe what this layer covers and the value it delivers.
+
+    - name:                     # e.g. Program Delivery Layer
+      office:                   # e.g. Project Management Office (PMO)
+      focus:                    # e.g. Project-Based Execution
+      work_type:                # Project
+      description: >
+        # Describe what this layer covers and the value it delivers.
+
+    - name:                     # e.g. Product Ownership and Transformation Layer
+      office:                   # e.g. Product Ownership (PO)
+      focus:                    # e.g. AI-led innovation and continuous improvement
+      work_type:                # Transformation
+      description: >
+        # Describe what this layer covers and the value it delivers.
+
+  shore_model:
+    name:                       # e.g. Rightshore, Nearshore, Global Delivery
+    tiers:
+      offshore:
+        - # e.g. India (24/7 coverage)
+      nearshore:
+        - # e.g. Toronto
+        - # e.g. Poland
+      onshore:
+        - # e.g. USA
+
+# -----------------------------------------------
+# PROPRIETARY FRAMEWORKS
+# -----------------------------------------------
+# List any named frameworks or methodologies your company uses.
+# These are used as differentiators in strategic question framing (D18)
+# and proposal scoring.
+# scope must be one of: All delivery layers, Service Delivery only,
+# Program Delivery only, Transformation only
+
+frameworks:
+  - name:                       # e.g. ACME Framework
+    scope:                      # e.g. Service Delivery only
+    description: >
+      # Describe the framework in 3-5 sentences.
+      # What does it stand for? What problem does it solve?
+      # What value does it deliver to clients?
+
+# -----------------------------------------------
+# KEY DIFFERENTIATORS
+# -----------------------------------------------
+# List your company's top differentiators as short bullet points.
+# Used as D18 fallback when no win themes are provided.
+
+differentiators:
+  - # e.g. AI-native SDLC
+  - # e.g. Outcome-based delivery model
+  - # e.g. Dedicated pod model with zero-rotation policy
+
+# -----------------------------------------------
+# BRANDING
+# -----------------------------------------------
+# Colors used in Excel and HTML report outputs.
+# Use hex color codes.
+
+branding:
+  primary_color: "#1F2D3D"      # Used for Excel header banner and HTML nav bar
+  accent_color: "#1B7A8A"       # Used for accents, links, and highlights
+  excel_header_title:           # Title shown in Excel header e.g. Query Log
