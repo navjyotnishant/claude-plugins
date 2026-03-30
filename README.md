@@ -77,6 +77,19 @@ claude-plugins/
 
 ---
 
+## Installing Plugins via Marketplace (Recommended)
+
+The easiest way to install plugins from this repo is via the Claude Cowork marketplace sync — no ZIP download needed.
+
+1. Open **Claude Cowork > Customize > Browse plugins > Add marketplace**
+2. Enter: `github.com/navjyotnishant/claude-plugins`
+3. Click **Sync**
+4. Browse and install any plugin from the marketplace
+
+Plugins installed this way stay up to date automatically whenever the repo is updated.
+
+---
+
 ## Packaging a Plugin
 
 Use `package-plugin.sh` at the repo root to produce a ready-to-upload ZIP.
