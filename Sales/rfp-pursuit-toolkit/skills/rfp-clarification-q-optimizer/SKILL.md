@@ -1,8 +1,4 @@
 ---
-name: rfp-clarification-q-optimizer
-author: Navjyot Nishant
-date: March 25, 2026
-version: 1.0
 description: Evaluates or generates RFP clarification questions. Produces a client-facing Query Log (Excel) and internal Question Assessment Report (HTML) with scoring across 5 dimensions.
 ---
 
