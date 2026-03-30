@@ -1,15 +1,22 @@
 {
   "name": "claude-plugins",
   "description": "A curated collection of Claude plugins built for enterprise pursuit and delivery teams.",
-  "author": {
+  "owner": {
     "name": "Navjyot Nishant"
   },
-  "homepage": "https://github.com/navjyotnishant/claude-plugins",
   "plugins": [
     {
       "name": "rfp-pursuit-toolkit",
+      "source": {
+        "source": "github",
+        "repo": "navjyotnishant/claude-plugins",
+        "subdir": "Sales/rfp-pursuit-toolkit"
+      },
       "description": "RFP pursuit toolkit for sales teams. Evaluate and generate clarification questions, score proposals, and produce client-ready deliverables.",
-      "path": "Sales/rfp-pursuit-toolkit"
+      "version": "1.0.0",
+      "author": {
+        "name": "Navjyot Nishant"
+      }
     }
   ]
 }
