@@ -75,7 +75,7 @@ GitHub repo, install directly from Cowork:
 
 Connect the claude-plugins GitHub repo as a private marketplace:
 1. Go to Organization Settings > Plugins
-2. Add plugin source: `NavjyotNishant/claude-plugins`
+2. Add plugin source: `navjyotnishant/nj-claude-plugins`
 3. Plugin syncs automatically on every repo update
 
 ---
@@ -116,4 +116,4 @@ workspace/
 
 ## Questions or Issues
 
-Raise an issue at github.com/NavjyotNishant/claude-plugins or contact Navjyot Nishant.
+Raise an issue at github.com/navjyotnishant/nj-claude-plugins or contact Navjyot Nishant.

@@ -5,10 +5,10 @@
   "author": {
     "name": "Navjyot Nishant"
   },
-  "homepage": "https://github.com/NavjyotNishant/claude-plugins",
+  "homepage": "https://github.com/navjyotnishant/nj-claude-plugins",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NavjyotNishant/claude-plugins"
+    "url": "https://github.com/navjyotnishant/nj-claude-plugins"
   },
   "license": "MIT",
   "skills": "./skills/"
