@@ -31,19 +31,33 @@ Produces two outputs from an RFP and optional draft clarification questions:
 
 ### Read config.yaml
 
-Before doing anything else, read the config file:
+Before doing anything else, locate and read the config file by checking these locations in order:
+
+1. `{workspace}/config.yaml` — a config.yaml placed directly in the active Claude Cowork workspace folder
+2. `../config/config.yaml` — the config bundled inside the plugin directory
 
 ```bash
+# Check workspace first
+cat {workspace}/config.yaml
+
+# If not found, check plugin config
 cat ../config/config.yaml
 ```
 
-If `../config/config.yaml` does not exist, check for `../config/config.template.yaml` and
-tell the user:
+If neither exists, tell the user:
 
 ```
-No config.yaml found in the plugin config/ directory. Please:
-1. Copy config/config.template.yaml
-2. Rename it to config.yaml
+No config.yaml found. You have two options:
+
+Option A (recommended) - Place config in your workspace:
+1. Copy config.template.yaml from the plugin's config/ folder
+2. Fill in your company details
+3. Save it as config.yaml in your active workspace folder
+4. Re-run the skill
+
+Option B - Place config in the plugin folder:
+1. Open the plugin's config/ directory
+2. Copy config.template.yaml → config.yaml
 3. Fill in your company details
 4. Re-run the skill
 ```
