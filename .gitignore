@@ -1,0 +1,17 @@
+# Company-specific configs - share manually, do not commit to public repo
+**/*-config.yaml
+**/config/config.yaml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Output files - generated per pursuit, not tracked in repo
+**/workspace/
+
+# Zip packages - generated locally, not tracked
+**/*.zip

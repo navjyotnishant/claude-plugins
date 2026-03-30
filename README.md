@@ -1,4 +1,4 @@
-# ClaudeSkills
+# claude-plugins
 
 A curated collection of Claude skills built for enterprise pursuit and delivery teams.
 Each skill is a purpose-built AI workflow that runs in Claude Cowork, automating
@@ -56,22 +56,47 @@ evaluation lifecycle.
 ## Repository Structure
 
 ```
-ClaudeSkills/
+claude-plugins/
 ├── README.md                              (this file)
 ├── .gitignore
+├── package-plugin.sh                      (packaging script - see below)
 └── Sales/
     └── rfp-pursuit-toolkit/
         ├── README.md                      (toolkit overview and config setup)
+        ├── .claude-plugin/
+        │   └── plugin.json                (plugin manifest)
         ├── config/
         │   ├── config.template.yaml       (blank template for any company)
-        │   └── cybage-config.yaml         (gitignored - Cybage specific)
-        ├── rfp-clarification-q-optimizer/
-        │   ├── SKILL.md
-        │   └── README.md
-        └── rfp-proposal-scorer/
-            ├── SKILL.md
-            └── README.md
+        │   └── config.yaml                (gitignored - your filled config)
+        └── skills/
+            ├── rfp-clarification-q-optimizer/
+            │   └── SKILL.md
+            └── rfp-proposal-scorer/
+                └── SKILL.md               (in development)
 ```
+
+---
+
+## Packaging a Plugin
+
+Use `package-plugin.sh` at the repo root to produce a ready-to-upload ZIP.
+
+**Prerequisites:** A filled `config/config.yaml` must exist inside the plugin directory.
+Copy `config/config.template.yaml` → `config/config.yaml` and fill in all fields before running.
+
+```bash
+./package-plugin.sh <Org/plugin-name>
+
+# Example
+./package-plugin.sh Sales/rfp-pursuit-toolkit
+```
+
+The script will:
+1. Validate `config/config.yaml` exists and has no unfilled placeholder values
+2. Stage a clean copy — strips `config.template.yaml`, `*-config.yaml` files, `.DS_Store`, and nested ZIPs
+3. Output `<plugin-name>.zip` at the repo root (gitignored)
+
+Upload the ZIP to **Claude Cowork > Customize > Browse plugins > Upload custom plugin**.
 
 ---
 

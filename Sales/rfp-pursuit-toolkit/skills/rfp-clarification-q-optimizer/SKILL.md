@@ -38,14 +38,14 @@ Produces two outputs from an RFP and optional draft clarification questions:
 Before doing anything else, read the config file:
 
 ```bash
-cat config/config.yaml
+cat ../config/config.yaml
 ```
 
-If `config/config.yaml` does not exist, check for `config/config.template.yaml` and
+If `../config/config.yaml` does not exist, check for `../config/config.template.yaml` and
 tell the user:
 
 ```
-No config.yaml found. Please:
+No config.yaml found in the plugin config/ directory. Please:
 1. Copy config/config.template.yaml
 2. Rename it to config.yaml
 3. Fill in your company details
