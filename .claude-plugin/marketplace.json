@@ -9,11 +9,7 @@
   "plugins": [
     {
       "name": "rfp-pursuit-toolkit",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/navjyotnishant/claude-plugins.git",
-        "path": "Sales/rfp-pursuit-toolkit"
-      },
+      "source": "./Sales/rfp-pursuit-toolkit",
       "description": "RFP pursuit toolkit for sales teams. Evaluate and generate clarification questions, score proposals, and produce client-ready deliverables.",
       "version": "1.0.0",
       "author": {
