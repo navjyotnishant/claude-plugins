@@ -74,20 +74,15 @@ If a required file is missing from both the active workspace and the plugin
 5. Open Claude Cowork > Customize > Browse plugins > Upload custom plugin
 6. Upload the generated ZIP
 
-### Option 2 - Install via Cowork Marketplace (Team/Enterprise)
+### Option 2 - Install via Cowork Marketplace
 
-If this repository has already been added as a marketplace in Claude Cowork:
-1. Open Claude Desktop and choose the Cowork tab
-2. Open `Capabilities` in the side panel
-3. Browse or search for `rfp-pursuit-toolkit`
-4. Install the plugin
+The easiest way to install this plugin is via the Claude Cowork marketplace sync — no ZIP upload needed.
 
-### Option 3 - GitHub sync (Team/Enterprise admins)
-
-For teams managing a shared marketplace:
-1. Add `github.com/navjyotnishant/nj-claude-plugins` as a marketplace source in Claude Cowork
-2. Sync the marketplace
-3. Team members can then install `rfp-pursuit-toolkit` from `Capabilities`
+1. Open Claude Cowork > Customize > Browse plugins > Add marketplace
+2. Enter: `github.com/navjyotnishant/nj-claude-plugins`
+3. Click **Sync**
+4. Browse or search for `rfp-pursuit-toolkit`
+5. Install the plugin
 
 ---
 
