@@ -15,6 +15,10 @@ Use this skill whenever you need to:
 - Identify gaps in RFP coverage that have no clarification question
 
 Always trigger when both an RFP and a list of clarification questions are present together.
+Also trigger when the user says things like "generate clarification questions",
+"what should I ask about this RFP", "draft my Q&A", "questions for the client",
+"help me with clarifications", or uploads an RFP and asks anything about
+questions, clarifications, or gaps.
 
 ---
 
