@@ -54,6 +54,7 @@ then fall back to the plugin `config/` folder.
 These files are mandatory where used:
 - `config.yaml` is required for both skills
 - `personas.yaml` is required for `rfp-proposal-scorer`
+- win themes are required for `rfp-proposal-scorer` in Existing Client and Existing Client New Scope pursuits
 
 If a required file is missing from both the active workspace and the plugin
 `config/` folder, the skill should stop and ask the user to provide it before proceeding.
@@ -95,7 +96,7 @@ Use this plugin from Claude Desktop in the Cowork tab. After the plugin is insta
 
 Typical inputs by workflow:
 - `rfp-clarification-q-optimizer`: RFP document, optional draft clarification questions, optional win themes, and optional account documents for existing-client pursuits
-- `rfp-proposal-scorer`: RFP document, proposal/response document, required `personas.yaml`, optional Q&A responses, optional competitor context, optional win themes, and optional account documents
+- `rfp-proposal-scorer`: RFP document, proposal/response document, required `personas.yaml`, optional Q&A responses, optional competitor context, required win themes for Existing Client modes, and optional account documents
 
 Example prompts:
 

@@ -98,6 +98,15 @@ File roles relevant to this skill:
 | QBR / MBR | Optional | Existing Client modes only |
 | Client feedback / satisfaction document | Optional | Existing Client modes only |
 
+Win theme enforcement by relationship mode:
+- Prospect: win themes are recommended; proceed with a warning if missing
+- Existing Client: win themes are required; do not proceed without them
+- Existing Client New Scope: win themes are required; do not proceed without them
+
+After relationship mode is confirmed:
+- if relationship mode is Prospect and win themes are missing, continue with a warning
+- if relationship mode is Existing Client or Existing Client New Scope and win themes are missing, stop and ask the user to provide them before proceeding
+
 After file resolution, ask the user which personas are present in the buying group:
 
 ```
