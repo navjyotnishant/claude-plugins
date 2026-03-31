@@ -22,7 +22,7 @@ questions, clarifications, or gaps.
 
 Prompts that should reliably trigger this skill:
 - "Run the clarification Q optimizer on this RFP"
-- "Generate a Cybage Query Log for this RFP"
+- "Generate a Query Log for this RFP"
 - "Generate RFP clarification questions and produce the Excel and HTML report"
 - "Use the rfp-clarification-q-optimizer for this RFP"
 - "Create the Q&A log for this RFP - Excel format with scoring"
@@ -32,7 +32,7 @@ Prompts that should reliably trigger this skill:
 ## Overview
 
 Produces two outputs from an RFP and optional draft clarification questions:
-1. **{config.branding.excel_header_title}** - client-facing Excel in Cybage branded format
+1. **{config.branding.excel_header_title}** - client-facing Excel in configured company-branded format
 2. **Question Assessment Report** - internal interactive HTML report with PDF export,
    covering per-question scoring, deduplication log, gap coverage matrix, and priority
    classification

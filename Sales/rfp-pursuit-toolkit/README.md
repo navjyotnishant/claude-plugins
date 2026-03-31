@@ -105,7 +105,7 @@ Example prompts:
 - "Generate clarification questions for the Acme RFP"
 - "Create a query log for this RFP"
 - "Run the clarification Q optimizer on this RFP"
-- "Generate a Cybage Query Log for this RFP"
+- "Generate a Query Log for this RFP"
 - "Generate RFP clarification questions and produce the Excel and HTML report"
 - "Use the rfp-clarification-q-optimizer for this RFP"
 - "Create the Q&A log for this RFP - Excel format with scoring"
