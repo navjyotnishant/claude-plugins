@@ -20,6 +20,13 @@ Also trigger when the user says things like "generate clarification questions",
 "help me with clarifications", or uploads an RFP and asks anything about
 questions, clarifications, or gaps.
 
+Prompts that should reliably trigger this skill:
+- "Run the clarification Q optimizer on this RFP"
+- "Generate a Cybage Query Log for this RFP"
+- "Generate RFP clarification questions and produce the Excel and HTML report"
+- "Use the rfp-clarification-q-optimizer for this RFP"
+- "Create the Q&A log for this RFP - Excel format with scoring"
+
 ---
 
 ## Overview
