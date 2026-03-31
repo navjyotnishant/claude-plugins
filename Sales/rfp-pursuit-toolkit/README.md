@@ -66,12 +66,15 @@ If a required file is missing from both the active workspace and the plugin
 
 1. Fill in `config/config.yaml` as described above
 2. Fill in `config/personas.yaml` for `rfp-proposal-scorer`
-3. Delete `config/config.template.yaml` and `config/personas.template.yaml`
-4. ZIP the entire `rfp-pursuit-toolkit/` folder:
-   - Mac: `zip -r rfp-pursuit-toolkit.zip rfp-pursuit-toolkit/`
-   - Windows: right-click folder > Send to > Compressed folder
+3. From the repo root, run:
+   - `./package-plugin.sh Sales/rfp-pursuit-toolkit`
+4. The packaging script will:
+   - validate `config/config.yaml`
+   - validate `config/personas.yaml` for this plugin
+   - strip `config.template.yaml`, `personas.template.yaml`, `*-config.yaml` files, `.DS_Store`, and nested ZIPs
+   - output `rfp-pursuit-toolkit.zip` at the repo root
 5. Open Claude Cowork > Customize > Browse plugins > Upload custom plugin
-6. Upload the ZIP
+6. Upload the generated ZIP
 
 ### Option 2 - Install via Cowork Marketplace (Team/Enterprise)
 
@@ -137,9 +140,7 @@ rfp-pursuit-toolkit/
 │   └── relationship-modes.md
 ├── config/
 │   ├── config.template.yaml
-│   ├── config.yaml
 │   ├── personas.template.yaml
-│   └── personas.yaml
 └── skills/
     ├── rfp-clarification-q-optimizer/
     │   └── SKILL.md

@@ -6,6 +6,7 @@
 #
 # The plugin directory is expected at <Org>/<plugin-name>/ relative to repo root.
 # A valid config/config.yaml must exist before packaging.
+# Some plugins may also require additional local config files.
 
 set -euo pipefail
 
@@ -104,6 +105,24 @@ fi
 
 echo "config/config.yaml looks good."
 
+# ── 3b. Check plugin-specific required config files ───────────────────────────
+if [[ "$PLUGIN_PATH" == "Sales/rfp-pursuit-toolkit" ]]; then
+  PERSONAS_FILE="$PLUGIN_DIR/config/personas.yaml"
+
+  if [[ ! -f "$PERSONAS_FILE" ]]; then
+    echo ""
+    echo "ERROR: config/personas.yaml not found in $PLUGIN_DIR/config/"
+    echo ""
+    echo "To fix:"
+    echo "  1. Copy config/personas.template.yaml  →  config/personas.yaml"
+    echo "  2. Fill in the required buyer persona definitions"
+    echo "  3. Re-run this script"
+    exit 1
+  fi
+
+  echo "config/personas.yaml looks good."
+fi
+
 # ── 4. Build staging copy ─────────────────────────────────────────────────────
 STAGING_DIR="$(mktemp -d)"
 STAGING_PLUGIN="$STAGING_DIR/$PLUGIN_NAME"
@@ -113,6 +132,7 @@ cp -r "$PLUGIN_DIR" "$STAGING_PLUGIN"
 
 # Remove config.template.yaml
 rm -f "$STAGING_PLUGIN/config/config.template.yaml"
+rm -f "$STAGING_PLUGIN/config/personas.template.yaml"
 
 # Remove any *-config.yaml files (gitignored company configs - not for distribution)
 find "$STAGING_PLUGIN/config" -name "*-config.yaml" -delete

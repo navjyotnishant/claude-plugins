@@ -32,10 +32,11 @@ filesystem access. They will not function in the standard Claude.ai chat interfa
 - Plugin skills produce Excel, HTML, DOCX, and PDF outputs
 
 **To get started:**
-1. Download Claude Cowork from claude.ai
+1. Download Claude Desktop from claude.ai
 2. Sign in with your Anthropic account (Pro, Team, or Enterprise plan required)
-3. Create a project for your use case
-4. Install the plugin from the relevant directory below
+3. In Claude Desktop, choose the Cowork tab
+4. Create a project for your use case
+5. Install the plugin by selecting Capabilities in the side panel
 
 ---
 
@@ -72,9 +73,7 @@ nj-claude-plugins/
         │   └── relationship-modes.md      (shared relationship logic)
         ├── config/
         │   ├── config.template.yaml       (blank template for any company)
-        │   ├── config.yaml                (gitignored - your filled config)
         │   ├── personas.template.yaml     (blank persona template)
-        │   └── personas.yaml              (workspace or plugin-level personas)
         └── skills/
             ├── rfp-clarification-q-optimizer/
             │   └── SKILL.md
@@ -84,7 +83,9 @@ nj-claude-plugins/
 
 ---
 
-## Installing Plugins via Marketplace (Recommended)
+## Installing Plugins
+
+### Via Marketplace (Recommended)
 
 The easiest way to install plugins from this repo is via the Claude Cowork marketplace sync — no ZIP download needed.
 
@@ -97,12 +98,12 @@ Plugins installed this way stay up to date automatically whenever the repo is up
 
 ---
 
-## Packaging a Plugin
+### Packaging a Plugin
 
 Use `package-plugin.sh` at the repo root to produce a ready-to-upload ZIP.
 
 **Prerequisites:** A filled `config/config.yaml` must exist inside the plugin directory.
-For `rfp-proposal-scorer`, a filled `config/personas.yaml` is also required.
+For `Sales/rfp-pursuit-toolkit`, a filled `config/personas.yaml` is also required.
 Copy `config/config.template.yaml` → `config/config.yaml` and `config/personas.template.yaml` → `config/personas.yaml` before running.
 
 ```bash
@@ -114,8 +115,9 @@ Copy `config/config.template.yaml` → `config/config.yaml` and `config/personas
 
 The script will:
 1. Validate `config/config.yaml` exists and has no unfilled placeholder values
-2. Stage a clean copy — strips `config.template.yaml`, `*-config.yaml` files, `.DS_Store`, and nested ZIPs
-3. Output `<plugin-name>.zip` at the repo root (gitignored)
+2. Validate any plugin-specific required config files, such as `config/personas.yaml` for `Sales/rfp-pursuit-toolkit`
+3. Stage a clean copy — strips `config.template.yaml`, `personas.template.yaml`, `*-config.yaml` files, `.DS_Store`, and nested ZIPs
+4. Output `<plugin-name>.zip` at the repo root (gitignored)
 
 Upload the ZIP to **Claude Cowork > Customize > Browse plugins > Upload custom plugin**.
 
@@ -123,14 +125,11 @@ Upload the ZIP to **Claude Cowork > Customize > Browse plugins > Upload custom p
 
 ## Contributing
 
-Plugins and skills are authored and maintained by Navjyot Nishant. To suggest improvements,
-report issues, or propose new plugins or skills, raise an issue in this repository.
+Contributions are welcome. If you want to suggest improvements, add a plugin or skill,
+or propose a workflow enhancement, please fork the repository and open a pull request.
 
-When adding a new plugin:
-- Create a new plugin directory with `.claude-plugin/plugin.json`
-- Add `skills/`, shared files, config templates, and README content as needed
-- Follow the Claude Cowork / plugin marketplace structure used in this repo
-- Add the plugin to the Plugin Index in this README
+For the full contribution workflow, repository expectations, and pull request guidance,
+see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ---
 
