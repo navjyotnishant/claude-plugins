@@ -1,4 +1,5 @@
 ---
+name: rfp-clarification-q-optimizer
 description: Evaluates or generates RFP clarification questions. Produces a client-facing Query Log (Excel) and internal Question Assessment Report (HTML) with scoring across 5 dimensions.
 ---
 
