@@ -67,35 +67,42 @@ If a required file is missing from both the active workspace and the plugin
 1. Fill in `config/config.yaml` as described above
 2. Fill in `config/personas.yaml` for `rfp-proposal-scorer`
 3. From the repo root, run:
-   - `./package-plugin.sh Sales/rfp-pursuit-toolkit`
-4. The packaging script will:
-   - validate `config/config.yaml`
-   - validate `config/personas.yaml` for this plugin
-   - strip `config.template.yaml`, `personas.template.yaml`, `*-config.yaml` files, `.DS_Store`, and nested ZIPs
-   - output `rfp-pursuit-toolkit.zip` at the repo root
+
+   `./package-plugin.sh Sales/rfp-pursuit-toolkit`
+
+4. The script will generate `rfp-pursuit-toolkit.zip` at the repo root
 5. Open Claude Cowork > Customize > Browse plugins > Upload custom plugin
 6. Upload the generated ZIP
 
 ### Option 2 - Install via Cowork Marketplace (Team/Enterprise)
 
-If your organization admin has set up a private marketplace from the nj-claude-plugins
-GitHub repo, install directly from Cowork:
-1. Open Claude Cowork > Customize > Browse plugins
-2. Search for `rfp-pursuit-toolkit`
-3. Click Install
+If this repository has already been added as a marketplace in Claude Cowork:
+1. Open Claude Desktop and choose the Cowork tab
+2. Open `Capabilities` in the side panel
+3. Browse or search for `rfp-pursuit-toolkit`
+4. Install the plugin
 
 ### Option 3 - GitHub sync (Team/Enterprise admins)
 
-Connect the nj-claude-plugins GitHub repo as a private marketplace:
-1. Go to Organization Settings > Plugins
-2. Add plugin source: `navjyotnishant/nj-claude-plugins`
-3. Plugin syncs automatically on every repo update
+For teams managing a shared marketplace:
+1. Add `github.com/navjyotnishant/nj-claude-plugins` as a marketplace source in Claude Cowork
+2. Sync the marketplace
+3. Team members can then install `rfp-pursuit-toolkit` from `Capabilities`
 
 ---
 
 ## How to Use
 
-Type `/` in Cowork to see available commands, or use natural language:
+Use this plugin from Claude Desktop in the Cowork tab. After the plugin is installed:
+- add your RFP and any supporting files to the working folder or project
+- make sure the required config files are available in the workspace or plugin `config/` folder
+- ask Claude to run the relevant workflow in natural language
+
+Typical inputs by workflow:
+- `rfp-clarification-q-optimizer`: RFP document, optional draft clarification questions, optional win themes, and optional account documents for existing-client pursuits
+- `rfp-proposal-scorer`: RFP document, proposal/response document, required `personas.yaml`, optional Q&A responses, optional competitor context, optional win themes, and optional account documents
+
+Example prompts:
 
 **Clarification questions:**
 - "Evaluate my clarification questions for this RFP"
@@ -118,12 +125,17 @@ workspace/
 └── rfp-pursuits/
     └── {client-name}_{rfp-name}_{date}/
         ├── rfp-clarification-q-optimizer/
-        │   ├── Query_Log_{client}_{date}.xlsx
+        │   ├── {company}_Query_Log_{client}_{date}.xlsx
         │   └── Question_Assessment_Report_{client}_{date}.html
         └── rfp-proposal-scorer/
             ├── Proposal_Scoring_Report_{client}_{date}.docx
             └── Proposal_Scoring_Report_{client}_{date}.pdf
 ```
+
+Notes:
+- `{company}` comes from `config.yaml` as `{config.company.short_name}`
+- both skills write into the same pursuit folder, each in its own subfolder
+- the skills confirm the output path before creating any files
 
 ---
 
@@ -147,6 +159,11 @@ rfp-pursuit-toolkit/
     └── rfp-proposal-scorer/
         └── SKILL.md
 ```
+
+Notes:
+- `shared/` contains reusable guidance used by multiple skills
+- `config/` contains template files only; local filled files such as `config.yaml` and `personas.yaml` should not be committed
+- `skills/` contains one directory per skill, each with its own `SKILL.md`
 
 ---
 

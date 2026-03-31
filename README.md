@@ -102,24 +102,16 @@ Plugins installed this way stay up to date automatically whenever the repo is up
 
 Use `package-plugin.sh` at the repo root to produce a ready-to-upload ZIP.
 
-**Prerequisites:** A filled `config/config.yaml` must exist inside the plugin directory.
-For `Sales/rfp-pursuit-toolkit`, a filled `config/personas.yaml` is also required.
-Copy `config/config.template.yaml` → `config/config.yaml` and `config/personas.template.yaml` → `config/personas.yaml` before running.
+1. Fill in the required config files for the plugin.
+   For `Sales/rfp-pursuit-toolkit`, this means `config/config.yaml` and `config/personas.yaml`.
+2. Run:
 
 ```bash
-./package-plugin.sh <Org/plugin-name>
-
-# Example
 ./package-plugin.sh Sales/rfp-pursuit-toolkit
 ```
 
-The script will:
-1. Validate `config/config.yaml` exists and has no unfilled placeholder values
-2. Validate any plugin-specific required config files, such as `config/personas.yaml` for `Sales/rfp-pursuit-toolkit`
-3. Stage a clean copy — strips `config.template.yaml`, `personas.template.yaml`, `*-config.yaml` files, `.DS_Store`, and nested ZIPs
-4. Output `<plugin-name>.zip` at the repo root (gitignored)
-
-Upload the ZIP to **Claude Cowork > Customize > Browse plugins > Upload custom plugin**.
+3. The script will generate `rfp-pursuit-toolkit.zip` at the repo root.
+4. In Claude Cowork, open `Capabilities` and upload the generated ZIP.
 
 ---
 
