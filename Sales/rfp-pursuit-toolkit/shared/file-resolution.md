@@ -3,6 +3,9 @@
 This file is referenced by both rfp-clarification-q-optimizer and rfp-proposal-scorer.
 Load it when you need to scan a working folder and infer file roles.
 
+If this shared file is missing, stop and tell the user the plugin installation is incomplete.
+Do not proceed without the required shared guidance files present in the plugin.
+
 ---
 
 ## Step 1 - Scan the Working Folder

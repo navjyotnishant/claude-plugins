@@ -103,7 +103,7 @@ Plugins installed this way stay up to date automatically whenever the repo is up
 Use `package-plugin.sh` at the repo root to produce a ready-to-upload ZIP.
 
 **Prerequisites:** A filled `config/config.yaml` must exist inside the plugin directory.
-If you want to use persona-aware proposal scoring, also fill `config/personas.yaml`.
+For `rfp-proposal-scorer`, a filled `config/personas.yaml` is also required.
 Copy `config/config.template.yaml` → `config/config.yaml` and `config/personas.template.yaml` → `config/personas.yaml` before running.
 
 ```bash

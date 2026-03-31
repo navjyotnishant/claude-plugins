@@ -37,7 +37,7 @@ rfp-proposal-scorer             <- score and improve proposal before submission
 
 ## Setup - Configuration (Required Before First Use)
 
-Both skills read from shared config files in `config/`:
+The plugin uses shared config files with workspace-first fallback:
 - `config.yaml` for company details, delivery model, frameworks, and branding
 - `personas.yaml` for buyer persona definitions used by `rfp-proposal-scorer`
 
@@ -51,6 +51,13 @@ Both skills read from shared config files in `config/`:
 The skills check the active workspace first for `config.yaml` and `personas.yaml`,
 then fall back to the plugin `config/` folder.
 
+These files are mandatory where used:
+- `config.yaml` is required for both skills
+- `personas.yaml` is required for `rfp-proposal-scorer`
+
+If a required file is missing from both the active workspace and the plugin
+`config/` folder, the skill should stop and ask the user to provide it before proceeding.
+
 ---
 
 ## How to Install
@@ -58,7 +65,7 @@ then fall back to the plugin `config/` folder.
 ### Option 1 - Upload ZIP (easiest for individuals)
 
 1. Fill in `config/config.yaml` as described above
-2. Fill in `config/personas.yaml` if you plan to use `rfp-proposal-scorer`
+2. Fill in `config/personas.yaml` for `rfp-proposal-scorer`
 3. Delete `config/config.template.yaml` and `config/personas.template.yaml`
 4. ZIP the entire `rfp-pursuit-toolkit/` folder:
    - Mac: `zip -r rfp-pursuit-toolkit.zip rfp-pursuit-toolkit/`

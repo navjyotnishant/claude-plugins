@@ -3,6 +3,9 @@
 This file is referenced by both rfp-clarification-q-optimizer and rfp-proposal-scorer.
 Load it when you need to apply relationship mode logic to scoring or framing.
 
+If this shared file is missing, stop and tell the user the plugin installation is incomplete.
+Do not proceed without the required shared guidance files present in the plugin.
+
 ---
 
 ## Three Relationship Modes

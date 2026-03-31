@@ -58,13 +58,22 @@ cat ../../config/personas.yaml
 
 If personas file not found:
 ```
-No personas.yaml found. Persona alignment scoring (dimensions 1 and 2) will use
-generic persona definitions. For more accurate scoring, place personas.yaml in
-your workspace or plugin config/ folder.
+No personas.yaml found. You have two options:
+
+Option A (recommended) - Place personas in your workspace:
+1. Copy `../../config/personas.template.yaml` from the plugin config/ folder
+2. Fill in your buyer persona definitions
+3. Save as personas.yaml in your active workspace folder
+4. Re-run the skill
+
+Option B - Place personas in the plugin folder:
+1. Open the plugin config/ directory at `../../config/`
+2. Copy `personas.template.yaml` to `personas.yaml`
+3. Fill in your buyer persona definitions
+4. Re-run the skill
 ```
 
-Proceed without personas file - fall back to generic persona definitions built
-into Step 4 dimension 1 and 2 scoring guidance.
+Do not proceed without a valid personas.yaml. Persona alignment scoring depends on it.
 
 Skill name for output directory: `rfp-proposal-scorer`
 
