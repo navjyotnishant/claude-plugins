@@ -1,8 +1,5 @@
 ---
 name: rfp-proposal-scorer
-author: Navjyot Nishant
-date: March 25, 2026
-version: 1.0
 description: Scores a proposal across 15 quality dimensions. Produces a DOCX + PDF scoring report with weighted assessment, win theme heatmap, and priority action plan.
 ---
 
