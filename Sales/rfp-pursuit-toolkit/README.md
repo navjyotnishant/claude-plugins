@@ -4,8 +4,8 @@
 **Version:** 1.0.0
 **Date:** March 25, 2026
 
-A Claude plugin for enterprise RFP pursuit teams. Bundles two skills covering
-the full clarification and proposal evaluation lifecycle.
+A Claude plugin for enterprise RFP pursuit teams. Bundles two skills plus
+shared guidance files covering the full clarification and proposal evaluation lifecycle.
 
 ---
 
@@ -37,17 +37,19 @@ rfp-proposal-scorer             <- score and improve proposal before submission
 
 ## Setup - Configuration (Required Before First Use)
 
-Both skills read from a shared `config/config.yaml` file that contains your
-company details, delivery model, frameworks, and branding.
+Both skills read from shared config files in `config/`:
+- `config.yaml` for company details, delivery model, frameworks, and branding
+- `personas.yaml` for buyer persona definitions used by `rfp-proposal-scorer`
 
 **Steps:**
 1. Open the `config/` folder in this plugin directory
 2. Copy `config.template.yaml` and rename it to `config.yaml`
-3. Fill in all fields with your company details
-4. Save - the plugin reads this file automatically on first run
+3. Copy `personas.template.yaml` and rename it to `personas.yaml`
+4. Fill in all fields with your company details and personas
+5. Save - the plugin reads these files automatically on first run
 
-**Cybage users:** Use the pre-filled `cybage-config.yaml` shared by your admin.
-Rename it to `config.yaml` - no other changes needed.
+The skills check the active workspace first for `config.yaml` and `personas.yaml`,
+then fall back to the plugin `config/` folder.
 
 ---
 
@@ -56,16 +58,17 @@ Rename it to `config.yaml` - no other changes needed.
 ### Option 1 - Upload ZIP (easiest for individuals)
 
 1. Fill in `config/config.yaml` as described above
-2. Delete `config/config.template.yaml` and `config/cybage-config.yaml`
-3. ZIP the entire `rfp-pursuit-toolkit/` folder:
+2. Fill in `config/personas.yaml` if you plan to use `rfp-proposal-scorer`
+3. Delete `config/config.template.yaml` and `config/personas.template.yaml`
+4. ZIP the entire `rfp-pursuit-toolkit/` folder:
    - Mac: `zip -r rfp-pursuit-toolkit.zip rfp-pursuit-toolkit/`
    - Windows: right-click folder > Send to > Compressed folder
-4. Open Claude Cowork > Customize > Browse plugins > Upload custom plugin
-5. Upload the ZIP
+5. Open Claude Cowork > Customize > Browse plugins > Upload custom plugin
+6. Upload the ZIP
 
 ### Option 2 - Install via Cowork Marketplace (Team/Enterprise)
 
-If your organization admin has set up a private marketplace from the claude-plugins
+If your organization admin has set up a private marketplace from the nj-claude-plugins
 GitHub repo, install directly from Cowork:
 1. Open Claude Cowork > Customize > Browse plugins
 2. Search for `rfp-pursuit-toolkit`
@@ -73,7 +76,7 @@ GitHub repo, install directly from Cowork:
 
 ### Option 3 - GitHub sync (Team/Enterprise admins)
 
-Connect the claude-plugins GitHub repo as a private marketplace:
+Connect the nj-claude-plugins GitHub repo as a private marketplace:
 1. Go to Organization Settings > Plugins
 2. Add plugin source: `navjyotnishant/nj-claude-plugins`
 3. Plugin syncs automatically on every repo update
@@ -110,6 +113,31 @@ workspace/
         └── rfp-proposal-scorer/
             ├── Proposal_Scoring_Report_{client}_{date}.docx
             └── Proposal_Scoring_Report_{client}_{date}.pdf
+```
+
+---
+
+## Plugin Structure
+
+```
+rfp-pursuit-toolkit/
+├── README.md
+├── .claude-plugin/
+│   └── plugin.json
+├── shared/
+│   ├── output-directory.md
+│   ├── file-resolution.md
+│   └── relationship-modes.md
+├── config/
+│   ├── config.template.yaml
+│   ├── config.yaml
+│   ├── personas.template.yaml
+│   └── personas.yaml
+└── skills/
+    ├── rfp-clarification-q-optimizer/
+    │   └── SKILL.md
+    └── rfp-proposal-scorer/
+        └── SKILL.md
 ```
 
 ---

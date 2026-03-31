@@ -1,6 +1,8 @@
 # Company-specific configs - share manually, do not commit to public repo
 **/*-config.yaml
 **/config/config.yaml
+**/config/personas.yaml
+**/config/cybage-personas.yaml
 
 # OS files
 .DS_Store

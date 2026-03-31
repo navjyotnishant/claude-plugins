@@ -1,0 +1,242 @@
+# RFP Pursuit Toolkit - Buyer Persona Definitions
+# -----------------------------------------------
+# Fill in all fields below with your persona definitions.
+# This file is read by rfp-proposal-scorer to evaluate persona alignment
+# across dimensions 1 and 2.
+#
+# Instructions:
+# - List all buyer personas your team encounters in RFP pursuits
+# - For each persona, define priority lens, language register,
+#   decision criteria, and red flags
+# - Save as personas.yaml in your workspace or plugin config/ folder
+# - The skill checks workspace first, then plugin config/
+#
+# Author: Your Name
+# Last Updated: YYYY-MM-DD
+# Version: 1.0
+
+personas:
+
+  - id: cto
+    label: CTO
+    title_examples:
+      - Chief Technology Officer
+
+    priority_lens:
+      # What does this persona care most about?
+      # Example: Architecture quality, scalability, technical debt reduction
+      - 
+
+    language_register:
+      # What level of technical depth do they expect?
+      # Example: Deep technical - comfortable with architecture diagrams, toolchain specifics
+      depth: 
+      signals:
+        # What language signals resonate with them?
+        - 
+
+    decision_criteria:
+      # What do they use to approve or block a deal?
+      - 
+
+    red_flags:
+      # What messaging turns them off?
+      - 
+
+  - id: cpo
+    label: CPO
+    title_examples:
+      - Chief Product Officer
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 
+
+  - id: cio
+    label: CIO
+    title_examples:
+      - Chief Information Officer
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 
+
+  - id: cfo
+    label: CFO
+    title_examples:
+      - Chief Financial Officer
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 
+
+  - id: ciso
+    label: CISO
+    title_examples:
+      - Chief Information Security Officer
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 
+
+  - id: coo
+    label: COO
+    title_examples:
+      - Chief Operating Officer
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 
+
+  - id: vp_engineering
+    label: VP/SVP/EVP Engineering
+    title_examples:
+      - VP Engineering
+      - SVP Engineering
+      - EVP Engineering
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 
+
+  - id: vp_operations
+    label: VP/SVP/EVP Operations
+    title_examples:
+      - VP IT Operations
+      - SVP IT Operations
+      - EVP IT Operations
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 
+
+  - id: vp_product
+    label: VP/SVP/EVP Product
+    title_examples:
+      - VP Product
+      - SVP Product
+      - EVP Product
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 
+
+  - id: director_engineering
+    label: Director Engineering
+    title_examples:
+      - Director Engineering
+      - Sr. Director Engineering
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 
+
+  - id: procurement
+    label: Procurement
+    title_examples:
+      - VP Procurement
+      - IT Sourcing Manager
+
+    priority_lens:
+      - 
+
+    language_register:
+      depth: 
+      signals:
+        - 
+
+    decision_criteria:
+      - 
+
+    red_flags:
+      - 

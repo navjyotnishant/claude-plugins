@@ -27,124 +27,43 @@ Produces two outputs from an RFP and optional draft clarification questions:
 
 ---
 
+## Shared References
+
+This skill uses shared logic from the plugin. Read these files before proceeding:
+
+- `../../shared/output-directory.md` - config lookup, directory naming, user confirmation flow
+- `../../shared/file-resolution.md` - folder scanning, file role inference, confirmation protocol
+- `../../shared/relationship-modes.md` - relationship mode definitions, scoring adjustments, account document extraction, banner spec
+
+Follow those files exactly for Step 0, Step 1, and relationship mode logic in Step 3.
+
+---
+
 ## Step 0 - Read Config and Establish Output Directory
 
-### Read config.yaml
+Follow `../../shared/output-directory.md` for the full protocol.
 
-Before doing anything else, locate and read the config file by checking these locations in order:
+All company-specific values (branding, delivery model, frameworks, differentiators)
+come from config.yaml loaded through that shared flow.
 
-1. `{workspace}/config.yaml` — a config.yaml placed directly in the active Claude Cowork workspace folder
-2. `../config/config.yaml` — the config bundled inside the plugin directory
-
-```bash
-# Check workspace first
-cat {workspace}/config.yaml
-
-# If not found, check plugin config
-cat ../config/config.yaml
-```
-
-If neither exists, tell the user:
-
-```
-No config.yaml found. You have two options:
-
-Option A (recommended) - Place config in your workspace:
-1. Copy config.template.yaml from the plugin's config/ folder
-2. Fill in your company details
-3. Save it as config.yaml in your active workspace folder
-4. Re-run the skill
-
-Option B - Place config in the plugin folder:
-1. Open the plugin's config/ directory
-2. Copy config.template.yaml → config.yaml
-3. Fill in your company details
-4. Re-run the skill
-```
-
-Do not proceed without a valid config.yaml. All company-specific values
-(branding, delivery model, frameworks, differentiators) are loaded from this file.
-
-### Infer client and RFP name from input filenames
-
-Scan the working folder or uploaded files. Extract:
-- `{client-name}` - from the RFP filename (e.g. `Marco_RFP_v2.pdf` → `Marco`)
-- `{rfp-name}` - short descriptor from the RFP filename (e.g. `IT_Managed_Services`)
-- `{date}` - today's date in YYYYMMDD format
-
-Proposed directory:
-```
-workspace/rfp-pursuits/{client-name}_{rfp-name}_{date}/rfp-clarification-q-optimizer/
-```
-
-### Confirm with user before creating anything
-
-Present the following and wait for explicit confirmation:
-```
-Before I proceed, please confirm the following details:
-
-  Client name        : {inferred client name}
-  RFP name           : {inferred rfp name}
-  Date               : {today's date}
-  Relationship mode  : {Prospect / Existing Client / Existing Client New Scope}
-  Output folder      : workspace/rfp-pursuits/{client}_{rfp}_{date}/rfp-clarification-q-optimizer/
-
-Does this look right? (yes / correct me)
-```
-
-If the user has not specified relationship mode, ask explicitly:
-```
-One more thing - is this a Prospect, an Existing Client, or an Existing Client
-responding to a New Scope RFP?
-```
-
-Only create the directory and proceed after the user confirms all details.
-
-```bash
-mkdir -p "workspace/rfp-pursuits/{client}_{rfp}_{date}/rfp-clarification-q-optimizer/"
-```
+Skill name for output directory: `rfp-clarification-q-optimizer`
 
 ---
 
 ## Step 1 - File Resolution
 
-### Scan the working folder
+Follow `../../shared/file-resolution.md` for the full protocol.
 
-```bash
-ls -1 <folder_path>
-```
+File roles relevant to this skill:
 
-### Infer file roles from filenames
-
-| Signal words in filename | Likely role |
-|---|---|
-| rfp, requirements, request, tender, bid-doc, brief | RFP document |
-| questions, clarification, queries, q&a, draft-q | Draft clarification questions |
-| themes, win-themes, positioning, strategy | Win themes |
-| account-plan, account_plan | Account Plan |
-| qbr, quarterly-review | QBR |
-| mbr, monthly-review | MBR |
-| cff, feedback, customer-feedback | CFF Form |
-
-### Confirm file roles before proceeding
-
-```
-I found these files:
-  RFP Document              : {filename}
-  Draft Questions (optional): {filename or "not provided"}
-  Win Themes (optional)     : {filename or "not provided"}
-  Account Plan (optional)   : {filename or "not provided"}
-  QBR (optional)            : {filename or "not provided"}
-  MBR (optional)            : {filename or "not provided"}
-  CFF Form (optional)       : {filename or "not provided"}
-
-Does this look right?
-```
-
-Do NOT ask for file paths. Only ask if a folder is completely empty.
-If two files could share the same role, show both and ask which is the final version.
-Account documents are only relevant for Existing Client and Existing Client New Scope
-modes. Do not prompt for them in Prospect mode.
+| Input | Required | Notes |
+|---|---|---|
+| RFP document | Required | Source of requirements, ambiguities, and gap analysis |
+| Draft clarification questions | Optional | If present, run Mode A evaluation and optimization |
+| Win themes | Optional | Used for strategic reframing in dimension 18 |
+| Account Plan | Optional | Existing Client modes only |
+| QBR / MBR | Optional | Existing Client modes only |
+| Client feedback / satisfaction document | Optional | Existing Client modes only; used for CFF blocklist logic |
 
 ### Determine operating mode
 
@@ -174,22 +93,9 @@ Note the key themes. These inform:
 
 ### Read account documents (Existing Client modes only)
 
-Extract the following signals from each document:
-
-| Document | What to extract |
-|---|---|
-| Account Plan | Current delivery scope, team structure, strategic objectives, known client priorities |
-| QBR | Recent SLA performance, delivery metrics, strategic initiatives, open items |
-| MBR | Recent operational performance, open issues, escalations, trends |
-| CFF Form | Satisfaction scores, specific praise, flagged concerns, improvement requests |
-
-**CFF-specific rule:** Log every concern or improvement area flagged in the CFF.
-These become a blocklist - questions that reopen these topics are flagged in
-dimension 18 and reframed to demonstrate progress rather than resurface issues.
-
-**Known scope list:** Compile from Account Plan and QBR/MBR {config.company.short_name} already
-knows about the client environment. This feeds dimension 16 scoring - questions
-about things on this list are penalized in Existing Client mode.
+Follow `../../shared/relationship-modes.md` account document extraction protocol.
+Build the known scope list and CFF blocklist before scoring. These feed dimension
+16 question-quality penalties and dimension 18 strategic-intent framing.
 
 ### Read draft questions (Mode A only)
 
@@ -204,22 +110,11 @@ Extract all questions. Note:
 
 ### Relationship Mode Scoring Adjustments
 
-Apply these adjustments throughout all dimension scoring:
+Apply clarification-question scoring adjustments from
+`../../shared/relationship-modes.md` throughout all dimension scoring.
 
-**Prospect:** Standard scoring thresholds. Generic questions acceptable at score 3.
-
-**Existing Client:**
-- Questions about items on the known scope list score 1 in dimension 16
-- Generic questions score 2 max in dimension 16
-- Dimension 18 score 5 requires the question to reference or build on existing
-  partnership, delivery history, or outcomes
-- Questions that read like a cold pitch score 2 max in dimension 18
-- CFF blocklist applied - flagged concern topics are reframed, not reopened
-
-**Existing Client New Scope:**
-- Apply Existing Client thresholds for questions touching current scope areas
-- Apply Prospect thresholds for questions about genuinely new scope areas
-- Label each question as "current scope" or "new scope" before scoring
+In practice, this means the shared rules govern how D16 and D18 behave across
+Prospect, Existing Client, and Existing Client New Scope modes.
 
 ---
 
@@ -431,61 +326,8 @@ If none: green checkmark "All identified gaps have coverage."
 
 **Relationship context banner** (full width, below 2-panel row):
 
-Banner is a structured status block - not a single strip. Behavior varies by mode
-and missing inputs.
-
-Warning rules:
-- Win themes missing + Prospect: amber warning
-- Win themes missing + Existing Client or Existing Client New Scope: red warning
-- Account docs missing + Existing Client or Existing Client New Scope: red warning
-- Account docs: not shown for Prospect mode
-
-Banner states:
-
-Prospect - fully loaded:
-```
-✅ Relationship Mode: Prospect  |  ✅ Win themes: Loaded ({N} themes)
-```
-
-Prospect - win themes missing:
-```
-✅ Relationship Mode: Prospect  |  ⚠️ Win themes: Not provided - D18 using {config.company.short_name} delivery positioning
-```
-
-Existing Client - fully loaded:
-```
-✅ Relationship Mode: Existing Client
-✅ Account documents: Account Plan, QBR, CFF loaded
-✅ Win themes: Loaded ({N} themes)
-```
-
-Existing Client - both missing:
-```
-✅ Relationship Mode: Existing Client
-🔴 Account documents: None loaded - relationship-based scoring limited
-🔴 Win themes: Not provided - D18 strategic scoring degraded
-```
-
-Existing Client - account docs missing, win themes loaded:
-```
-✅ Relationship Mode: Existing Client
-🔴 Account documents: None loaded - relationship-based scoring limited
-✅ Win themes: Loaded ({N} themes)
-```
-
-Existing Client New Scope - both missing:
-```
-✅ Relationship Mode: Existing Client New Scope  |  Scored as: Hybrid
-🔴 Account documents: None loaded - relationship-based scoring limited
-🔴 Win themes: Not provided - D18 strategic scoring degraded
-```
-
-Existing Client New Scope - fully loaded:
-```
-✅ Relationship Mode: Existing Client New Scope  |  Scored as: Hybrid
-✅ Account documents: Account Plan, QBR, MBR, CFF loaded
-✅ Win themes: Loaded ({N} themes)
-```
+Render this as a structured status block, not a single strip. Follow the banner
+spec in `../../shared/relationship-modes.md` for warning rules and banner states.
 
 ---
 

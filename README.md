@@ -1,4 +1,4 @@
-# claude-plugins
+# nj-claude-plugins
 
 A curated collection of Claude skills built for enterprise pursuit and delivery teams.
 Each skill is a purpose-built AI workflow that runs in Claude Cowork, automating
@@ -48,16 +48,18 @@ evaluation lifecycle.
 
 | Skill | What it does | Status |
 |---|---|---|
-| [rfp-clarification-q-optimizer](./Sales/rfp-pursuit-toolkit/rfp-clarification-q-optimizer/README.md) | Evaluates or generates RFP clarification questions. Produces a client-facing Query Log (Excel) and internal Question Assessment Report (HTML) | Active |
-| [rfp-proposal-scorer](./Sales/rfp-pursuit-toolkit/rfp-proposal-scorer/README.md) | Scores a proposal across 15 quality dimensions covering strategic positioning, persona alignment, and RFP compliance. Produces a scoring report (DOCX + PDF) | In Development |
+| [rfp-clarification-q-optimizer](./Sales/rfp-pursuit-toolkit/README.md) | Evaluates or generates RFP clarification questions. Produces a client-facing Query Log (Excel) and internal Question Assessment Report (HTML) | Active |
+| [rfp-proposal-scorer](./Sales/rfp-pursuit-toolkit/README.md) | Scores a proposal across 15 quality dimensions covering strategic positioning, persona alignment, and RFP compliance. Produces a scoring report (DOCX + PDF) | Active |
 
 ---
 
 ## Repository Structure
 
 ```
-claude-plugins/
+nj-claude-plugins/
 ├── README.md                              (this file)
+├── .claude-plugin/
+│   └── marketplace.json                   (marketplace manifest)
 ├── .gitignore
 ├── package-plugin.sh                      (packaging script - see below)
 └── Sales/
@@ -65,14 +67,20 @@ claude-plugins/
         ├── README.md                      (toolkit overview and config setup)
         ├── .claude-plugin/
         │   └── plugin.json                (plugin manifest)
+        ├── shared/
+        │   ├── output-directory.md        (shared config and directory flow)
+        │   ├── file-resolution.md         (shared file resolution flow)
+        │   └── relationship-modes.md      (shared relationship logic)
         ├── config/
         │   ├── config.template.yaml       (blank template for any company)
-        │   └── config.yaml                (gitignored - your filled config)
+        │   ├── config.yaml                (gitignored - your filled config)
+        │   ├── personas.template.yaml     (blank persona template)
+        │   └── personas.yaml              (workspace or plugin-level personas)
         └── skills/
             ├── rfp-clarification-q-optimizer/
             │   └── SKILL.md
             └── rfp-proposal-scorer/
-                └── SKILL.md               (in development)
+                └── SKILL.md
 ```
 
 ---
@@ -95,7 +103,8 @@ Plugins installed this way stay up to date automatically whenever the repo is up
 Use `package-plugin.sh` at the repo root to produce a ready-to-upload ZIP.
 
 **Prerequisites:** A filled `config/config.yaml` must exist inside the plugin directory.
-Copy `config/config.template.yaml` → `config/config.yaml` and fill in all fields before running.
+If you want to use persona-aware proposal scoring, also fill `config/personas.yaml`.
+Copy `config/config.template.yaml` → `config/config.yaml` and `config/personas.template.yaml` → `config/personas.yaml` before running.
 
 ```bash
 ./package-plugin.sh <Org/plugin-name>
