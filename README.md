@@ -1,55 +1,54 @@
 # nj-claude-plugins
 
-A curated collection of Claude skills built for enterprise pursuit and delivery teams.
-Each skill is a purpose-built AI workflow that runs in Claude Cowork, automating
-complex, multi-step tasks that would otherwise take hours of manual effort.
+A curated collection of Claude plugins built for enterprise pursuit and delivery teams.
+Each plugin packages one or more Claude skills, shared guidance files, and configuration
+needed to run repeatable AI workflows in Claude Cowork.
 
 **Author:** Navjyot Nishant
-**Organization:** Cybage Software Inc.
 **Last Updated:** March 25, 2026
 
 ---
 
-## What Are Claude Skills?
+## What Are Claude Plugins?
 
-Claude Skills are reusable instruction sets that tell Claude how to handle specific
-complex tasks - reading documents, generating structured outputs, applying scoring
-rubrics, and producing professional deliverables. They are installed once in Claude
-Cowork and triggered by natural language.
+Claude plugins are installable bundles for Claude Cowork. A plugin can include skills,
+shared guidance files, configuration templates, hooks, agents, and other assets needed
+for a reusable workflow.
 
-Think of them as expert workflows you can invoke on demand.
+In this repository, each plugin contains purpose-built skills that tell Claude how to
+handle complex tasks like reading documents, generating structured outputs, applying
+scoring rubrics, and producing professional deliverables.
 
 ---
 
 ## Requirements
 
-All skills in this repository require **Claude Cowork** - the Claude desktop app with
+All plugins in this repository require **Claude Cowork** - the Claude desktop app with
 filesystem access. They will not function in the standard Claude.ai chat interface.
 
 **Why Cowork?**
-- Skills need to read uploaded documents from disk
-- Skills create output directories and save generated files
-- Skills produce Excel, HTML, DOCX, and PDF outputs
+- Plugin skills need to read uploaded documents from disk
+- Plugin skills create output directories and save generated files
+- Plugin skills produce Excel, HTML, DOCX, and PDF outputs
 
 **To get started:**
 1. Download Claude Cowork from claude.ai
 2. Sign in with your Anthropic account (Pro, Team, or Enterprise plan required)
 3. Create a project for your use case
-4. Install the skill from the relevant directory below
+4. Install the plugin from the relevant directory below
 
 ---
 
-## Skills Index
+## Plugin Index
 
 ### rfp-pursuit-toolkit
 
-Tools for enterprise RFP pursuit teams covering the full clarification and proposal
+Plugin for enterprise RFP pursuit teams covering the full clarification and proposal
 evaluation lifecycle.
 
-| Skill | What it does | Status |
+| Plugin | What it includes | Status |
 |---|---|---|
-| [rfp-clarification-q-optimizer](./Sales/rfp-pursuit-toolkit/README.md) | Evaluates or generates RFP clarification questions. Produces a client-facing Query Log (Excel) and internal Question Assessment Report (HTML) | Active |
-| [rfp-proposal-scorer](./Sales/rfp-pursuit-toolkit/README.md) | Scores a proposal across 15 quality dimensions covering strategic positioning, persona alignment, and RFP compliance. Produces a scoring report (DOCX + PDF) | Active |
+| [rfp-pursuit-toolkit](./Sales/rfp-pursuit-toolkit/README.md) | Includes `rfp-clarification-q-optimizer` and `rfp-proposal-scorer` skills, shared guidance files, and config templates for enterprise RFP pursuits | Active |
 
 ---
 
@@ -124,17 +123,17 @@ Upload the ZIP to **Claude Cowork > Customize > Browse plugins > Upload custom p
 
 ## Contributing
 
-Skills are authored and maintained by Navjyot Nishant. To suggest improvements,
-report issues, or propose new skills, raise an issue in this repository.
+Plugins and skills are authored and maintained by Navjyot Nishant. To suggest improvements,
+report issues, or propose new plugins or skills, raise an issue in this repository.
 
-When adding a new skill:
-- Create a new directory at the appropriate level
-- Include `SKILL.md` and `README.md` as a minimum
-- Follow the credit block format (author, date, version, description, trigger)
-- Add the skill to the Skills Index in this README
+When adding a new plugin:
+- Create a new plugin directory with `.claude-plugin/plugin.json`
+- Add `skills/`, shared files, config templates, and README content as needed
+- Follow the Claude Cowork / plugin marketplace structure used in this repo
+- Add the plugin to the Plugin Index in this README
 
 ---
 
 ## License
 
-Internal use. Contact Navjyot Nishant for usage outside Cybage Software Inc.
+Apache-2.0. See [LICENSE](./LICENSE).
