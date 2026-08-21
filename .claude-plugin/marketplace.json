@@ -4,13 +4,22 @@
     "name": "Navjyot Nishant"
   },
   "metadata": {
-    "description": "A curated collection of Claude plugins built for enterprise pursuit and delivery teams."
+    "description": "A curated collection of Claude plugins for enterprise pursuit, delivery, and content teams."
   },
   "plugins": [
     {
       "name": "rfp-pursuit-toolkit",
       "source": "./Sales/rfp-pursuit-toolkit",
       "description": "RFP pursuit toolkit for sales teams. Evaluate and generate clarification questions, score proposals, and produce client-ready deliverables.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Navjyot Nishant"
+      }
+    },
+    {
+      "name": "writing-desk",
+      "source": "./Content/writing-desk",
+      "description": "Research, fact-check, and publish articles that survive expert scrutiny. Parallel research agents gather primary sources, a red-team agent attacks every claim before publication, and an editor matches your voice.",
       "version": "1.0.0",
       "author": {
         "name": "Navjyot Nishant"

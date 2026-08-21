@@ -1,11 +1,11 @@
 # nj-claude-plugins
 
-A curated collection of Claude plugins built for enterprise pursuit and delivery teams.
+A curated collection of Claude plugins for enterprise pursuit, delivery, and content teams.
 Each plugin packages one or more Claude skills, shared guidance files, and configuration
 needed to run repeatable AI workflows in Claude Cowork.
 
 **Author:** Navjyot Nishant
-**Last Updated:** March 25, 2026
+**Last Updated:** August 21, 2026
 
 ---
 
@@ -51,6 +51,16 @@ evaluation lifecycle.
 |---|---|---|
 | [rfp-pursuit-toolkit](./Sales/rfp-pursuit-toolkit/README.md) | Includes `rfp-clarification-q-optimizer` and `rfp-proposal-scorer` skills, shared guidance files, and config templates for enterprise RFP pursuits | Active |
 
+### writing-desk
+
+Plugin for researched writing, covering the full path from a topic to a fact-checked
+draft. Built around the premise that the failure mode for thought-leadership content is
+not bad prose but confidently stated claims that turn out to be wrong.
+
+| Plugin | What it includes | Status |
+|---|---|---|
+| [writing-desk](./Content/writing-desk/README.md) | Includes the `research-blog-writer` skill, `/write-article`, `/fact-check`, `/social-post` and `/style-check` commands, and researcher, red-team and editor agents | Active |
+
 ---
 
 ## Repository Structure
@@ -62,23 +72,43 @@ nj-claude-plugins/
 │   └── marketplace.json                   (marketplace manifest)
 ├── .gitignore
 ├── package-plugin.sh                      (packaging script - see below)
-└── Sales/
-    └── rfp-pursuit-toolkit/
-        ├── README.md                      (toolkit overview and config setup)
+├── Sales/
+│   └── rfp-pursuit-toolkit/
+│       ├── README.md                      (toolkit overview and config setup)
+│       ├── .claude-plugin/
+│       │   └── plugin.json                (plugin manifest)
+│       ├── shared/
+│       │   ├── output-directory.md        (shared config and directory flow)
+│       │   ├── file-resolution.md         (shared file resolution flow)
+│       │   └── relationship-modes.md      (shared relationship logic)
+│       ├── config/
+│       │   ├── config.template.yaml       (blank template for any company)
+│       │   ├── personas.template.yaml     (blank persona template)
+│       └── skills/
+│           ├── rfp-clarification-q-optimizer/
+│           │   └── SKILL.md
+│           └── rfp-proposal-scorer/
+│               └── SKILL.md
+└── Content/
+    └── writing-desk/
+        ├── README.md                      (plugin overview and design notes)
         ├── .claude-plugin/
         │   └── plugin.json                (plugin manifest)
-        ├── shared/
-        │   ├── output-directory.md        (shared config and directory flow)
-        │   ├── file-resolution.md         (shared file resolution flow)
-        │   └── relationship-modes.md      (shared relationship logic)
-        ├── config/
-        │   ├── config.template.yaml       (blank template for any company)
-        │   ├── personas.template.yaml     (blank persona template)
+        ├── commands/
+        │   ├── write-article.md           (/write-article)
+        │   ├── fact-check.md              (/fact-check)
+        │   ├── social-post.md             (/social-post)
+        │   └── style-check.md             (/style-check)
+        ├── agents/
+        │   ├── researcher.md              (primary-source evidence gathering)
+        │   ├── red-team.md                (adversarial fact-checking)
+        │   └── editor.md                  (voice and continuity)
         └── skills/
-            ├── rfp-clarification-q-optimizer/
-            │   └── SKILL.md
-            └── rfp-proposal-scorer/
-                └── SKILL.md
+            └── research-blog-writer/
+                ├── SKILL.md
+                └── references/
+                    ├── claim-hygiene.md   (ten ways drafts get corrected)
+                    └── data-visuals.md    (charts that do not lie)
 ```
 
 ---

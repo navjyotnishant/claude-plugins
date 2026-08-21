@@ -1,0 +1,17 @@
+{
+  "name": "writing-desk",
+  "version": "1.0.0",
+  "description": "Research, fact-check, and publish articles that survive expert scrutiny. Parallel research agents gather primary sources, a red-team agent attacks every claim before publication, and an editor matches your voice.",
+  "author": {
+    "name": "Navjyot Nishant"
+  },
+  "keywords": [
+    "writing",
+    "research",
+    "fact-checking",
+    "linkedin",
+    "thought-leadership",
+    "editorial"
+  ],
+  "license": "Apache-2.0"
+}

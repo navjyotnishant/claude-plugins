@@ -32,9 +32,18 @@ if [[ ! -d "$PLUGIN_DIR" ]]; then
 fi
 
 # ── 2. Check config/config.yaml exists ───────────────────────────────────────
+# Not every plugin needs configuration. A plugin with no config/ directory is
+# config-free by design, so skip validation entirely and go straight to staging.
 CONFIG_FILE="$PLUGIN_DIR/config/config.yaml"
 
-if [[ ! -f "$CONFIG_FILE" ]]; then
+if [[ ! -d "$PLUGIN_DIR/config" ]]; then
+  echo "No config/ directory - packaging as a config-free plugin."
+  SKIP_CONFIG_CHECKS=1
+else
+  SKIP_CONFIG_CHECKS=0
+fi
+
+if [[ "$SKIP_CONFIG_CHECKS" -eq 0 && ! -f "$CONFIG_FILE" ]]; then
   echo ""
   echo "ERROR: config/config.yaml not found in $PLUGIN_DIR/config/"
   echo ""
@@ -50,6 +59,8 @@ fi
 # non-comment line is at the same or lower indent level (i.e. it is a leaf),
 # flag it as blank. Also flags known template placeholder strings.
 ISSUES=()
+
+if [[ "$SKIP_CONFIG_CHECKS" -eq 0 ]]; then
 
 IFS=$'\n' read -r -d '' -a LINES < "$CONFIG_FILE" || true
 TOTAL=${#LINES[@]}
@@ -105,6 +116,8 @@ fi
 
 echo "config/config.yaml looks good."
 
+fi  # end SKIP_CONFIG_CHECKS guard
+
 # ── 3b. Check plugin-specific required config files ───────────────────────────
 if [[ "$PLUGIN_PATH" == "Sales/rfp-pursuit-toolkit" ]]; then
   PERSONAS_FILE="$PLUGIN_DIR/config/personas.yaml"
@@ -130,12 +143,13 @@ STAGING_PLUGIN="$STAGING_DIR/$PLUGIN_NAME"
 echo "Staging plugin..."
 cp -r "$PLUGIN_DIR" "$STAGING_PLUGIN"
 
-# Remove config.template.yaml
-rm -f "$STAGING_PLUGIN/config/config.template.yaml"
-rm -f "$STAGING_PLUGIN/config/personas.template.yaml"
-
-# Remove any *-config.yaml files (gitignored company configs - not for distribution)
-find "$STAGING_PLUGIN/config" -name "*-config.yaml" -delete
+# Remove config templates and any gitignored company configs (not for
+# distribution). Guarded because config-free plugins have no config/ directory.
+if [[ -d "$STAGING_PLUGIN/config" ]]; then
+  rm -f "$STAGING_PLUGIN/config/config.template.yaml"
+  rm -f "$STAGING_PLUGIN/config/personas.template.yaml"
+  find "$STAGING_PLUGIN/config" -name "*-config.yaml" -delete
+fi
 
 # Remove OS noise
 find "$STAGING_PLUGIN" -name ".DS_Store" -delete
